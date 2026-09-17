@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 Verb to Be – Affirmative, Negative and Questions</title>
+<style>
+  :root{
+    --ink:#222;
+    --muted:#666;
+    --line:#d9d9d9;
+    --soft:#f6f3fa;
+    --panel:#ffffff;
+    --accent:#6b3fa0;
+    --ok:#1f7a3f;
+    --bad:#b42318;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--ink);
+    background:#fafafa;
+    line-height:1.45;
+    font-size:16px;
+  }
+  .page{
+    max-width:900px;
+    margin:32px auto;
+    background:var(--panel);
+    padding:34px 38px 46px;
+    box-shadow:0 2px 14px rgba(0,0,0,.08);
+  }
+  h1{margin:0 0 4px;font-size:30px}
+  .subtitle{color:var(--muted);margin-bottom:24px}
+  h2{
+    font-size:21px;
+    margin:34px 0 12px;
+    padding-bottom:7px;
+    border-bottom:2px solid var(--accent);
+  }
+  h3{font-size:17px;margin:18px 0 8px}
+  .ref{
+    background:var(--soft);
+    border-left:5px solid var(--accent);
+    padding:18px;
+    margin:18px 0 24px;
+  }
+  table{width:100%;border-collapse:collapse;margin:12px 0}
+  th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
+  th{background:#f0eef4}
+  .small{font-size:14px;color:var(--muted)}
+  .example{
+    background:#f7f7f7;
+    padding:10px 12px;
+    margin:8px 0 14px;
+    border-radius:6px;
+  }
+  .exercise{
+    padding-bottom:8px;
+  }
+  .item{margin:12px 0 16px}
+  .item label{display:block;margin-bottom:6px}
+  input[type="text"]{
+    width:100%;
+    border:1px solid #bbb;
+    border-radius:6px;
+    padding:10px 11px;
+    font-size:16px;
+  }
+  input.short{max-width:260px}
+  .inline{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    margin:10px 0;
+  }
+  .inline input{width:120px}
+  .feedback{
+    display:block;
+    font-size:14px;
+    margin-top:5px;
+    min-height:20px;
+  }
+  .correct input{border-color:var(--ok);background:#f1fbf5}
+  .incorrect input{border-color:var(--bad);background:#fff5f4}
+  .correct .feedback{color:var(--ok)}
+  .incorrect .feedback{color:var(--bad)}
+  .exercise-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:18px 0 8px;
+  }
+  button{
+    border:0;
+    border-radius:6px;
+    padding:10px 15px;
+    font-size:15px;
+    cursor:pointer;
+  }
+  .primary{background:var(--accent);color:white}
+  .secondary{background:#ececec;color:#222}
+  .open-note{
+    border:1px dashed #aaa;
+    padding:10px 12px;
+    border-radius:6px;
+    color:var(--muted);
+    font-size:14px;
+  }
+  @media print{
+    body{background:white}
+    .page{box-shadow:none;margin:0;max-width:none;padding:18mm}
+    .exercise-actions{display:none}
+  }
+  @media (max-width:650px){
+    .page{margin:0;padding:22px 18px}
+    table{font-size:14px}
+    th,td{padding:7px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>A1 — Verb <em>to be</em></h1>
+  <div class="subtitle">Affirmative sentences, negative sentences, questions and short answers</div>
+
+  <div class="ref">
+    <h3>Reference box</h3>
+    <table>
+      <tr>
+        <th>Affirmative</th>
+        <th>Negative</th>
+        <th>Question</th>
+        <th>Short answer</th>
+      </tr>
+      <tr>
+        <td>I <strong>am</strong> Lisa.</td>
+        <td>I <strong>am not</strong> Lisa.</td>
+        <td><strong>Am</strong> I in room 2?</td>
+        <td>Yes, you <strong>are</strong>.<br>No, you <strong>aren't</strong>.</td>
+      </tr>
+      <tr>
+        <td>You <strong>are</strong> in my class.</td>
+        <td>You <strong>are not</strong> in my class.</td>
+        <td><strong>Are</strong> you Henry?</td>
+        <td>Yes, I <strong>am</strong>.<br>No, I'm <strong>not</strong>.</td>
+      </tr>
+      <tr>
+        <td>He <strong>is</strong> Henry.</td>
+        <td>He <strong>is not</strong> Henry.</td>
+        <td><strong>Is</strong> he in room 3?</td>
+        <td>Yes, he <strong>is</strong>.<br>No, he <strong>isn't</strong>.</td>
+      </tr>
+      <tr>
+        <td>She <strong>is</strong> Lisa.</td>
+        <td>She <strong>is not</strong> Lisa.</td>
+        <td><strong>Is</strong> she Lisa?</td>
+        <td>Yes, she <strong>is</strong>.<br>No, she <strong>isn't</strong>.</td>
+      </tr>
+    </table>
+    <p><strong>Contractions:</strong> I am → <strong>I'm</strong> · You are → <strong>You're</strong> · He is → <strong>He's</strong> · She is → <strong>She's</strong> · is not → <strong>isn't</strong> · are not → <strong>aren't</strong></p>
+    <p class="small"><strong>Remember:</strong> Yes, I <strong>am</strong>. ✓ &nbsp;&nbsp; <s>Yes, I'm.</s> ✗</p>
+  </div>
+
+  <section class="exercise" id="ex1">
+    <h2>1. Complete with <em>am</em>, <em>is</em> or <em>are</em>.</h2>
+    <div class="item checkable"><label>1. I <input class="short" type="text" data-answer="am"> Lisa.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>2. You <input class="short" type="text" data-answer="are"> in my class.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>3. Henry <input class="short" type="text" data-answer="is"> in room 1.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>4. Lisa <input class="short" type="text" data-answer="is"> in room 3.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>5. I <input class="short" type="text" data-answer="am"> number 2.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>6. You <input class="short" type="text" data-answer="are"> Henry.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>7. She <input class="short" type="text" data-answer="is"> a student.</label><span class="feedback"></span></div>
+    <div class="item checkable"><label>8. He <input class="short" type="text" data-answer="is"> in my class.</label><span class="feedback"></span></div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex1')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex1')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex2">
+    <h2>2. Make the sentences negative.</h2>
+    <div class="example"><strong>Example:</strong> I am Henry. → <strong>I am not Henry.</strong></div>
+    <div class="item checkable"><label>1. Lisa is in room 1.</label><input type="text" data-answers="lisa is not in room 1|lisa isn't in room 1"><span class="feedback"></span></div>
+    <div class="item checkable"><label>2. Henry is number 3.</label><input type="text" data-answers="henry is not number 3|henry isn't number 3"><span class="feedback"></span></div>
+    <div class="item checkable"><label>3. You are in my class.</label><input type="text" data-answers="you are not in my class|you aren't in my class"><span class="feedback"></span></div>
+    <div class="item checkable"><label>4. I am Lisa.</label><input type="text" data-answers="i am not lisa|i'm not lisa"><span class="feedback"></span></div>
+    <div class="item checkable"><label>5. She is in room 2.</label><input type="text" data-answers="she is not in room 2|she isn't in room 2"><span class="feedback"></span></div>
+    <div class="item checkable"><label>6. He is Henry Green.</label><input type="text" data-answers="he is not henry green|he isn't henry green"><span class="feedback"></span></div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex2')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex2')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex3">
+    <h2>3. Make questions.</h2>
+    <div class="example"><strong>Example:</strong> You are Lisa. → <strong>Are you Lisa?</strong></div>
+    <div class="item checkable"><label>1. You are Henry.</label><input type="text" data-answer="are you henry"><span class="feedback"></span></div>
+    <div class="item checkable"><label>2. Lisa is in room 3.</label><input type="text" data-answer="is lisa in room 3"><span class="feedback"></span></div>
+    <div class="item checkable"><label>3. Henry is in your class.</label><input type="text" data-answer="is henry in your class"><span class="feedback"></span></div>
+    <div class="item checkable"><label>4. She is Lisa.</label><input type="text" data-answer="is she lisa"><span class="feedback"></span></div>
+    <div class="item checkable"><label>5. He is number 1.</label><input type="text" data-answer="is he number 1"><span class="feedback"></span></div>
+    <div class="item checkable"><label>6. You are in room 2.</label><input type="text" data-answer="are you in room 2"><span class="feedback"></span></div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex3')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex3')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex4">
+    <h2>4. Put the words in the correct order.</h2>
+    <div class="item checkable"><label>1. you / Are / Lisa</label><input type="text" data-answer="are you lisa"><span class="feedback"></span></div>
+    <div class="item checkable"><label>2. Henry / is / He</label><input type="text" data-answer="he is henry"><span class="feedback"></span></div>
+    <div class="item checkable"><label>3. not / I / Henry / am</label><input type="text" data-answers="i am not henry|i'm not henry"><span class="feedback"></span></div>
+    <div class="item checkable"><label>4. she / Is / your class / in</label><input type="text" data-answer="is she in your class"><span class="feedback"></span></div>
+    <div class="item checkable"><label>5. are / You / room 3 / in</label><input type="text" data-answer="you are in room 3"><span class="feedback"></span></div>
+    <div class="item checkable"><label>6. Lisa / not / is / number 2</label><input type="text" data-answers="lisa is not number 2|lisa isn't number 2"><span class="feedback"></span></div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex4')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex4')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex5">
+    <h2>5. Complete the mini-dialogues.</h2>
+    <h3>A</h3>
+    <div class="inline">A: Hello! I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> Emma. What's your name?</div>
+    <div class="inline">B: I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> Daniel.</div>
+    <div class="inline">A: <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you in room 2?</div>
+    <div class="inline">B: No, I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> not. I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> in room 3.</div>
+
+    <h3>B</h3>
+    <div class="inline">A: <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you Julia?</div>
+    <div class="inline">B: Yes, I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span>.</div>
+    <div class="inline">A: <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you in my class?</div>
+    <div class="inline">B: No, I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> not.</div>
+
+    <h3>C</h3>
+    <div class="inline">A: Who is he?</div>
+    <div class="inline">B: He <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> Henry.</div>
+    <div class="inline">A: <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> he in room 1?</div>
+    <div class="inline">B: Yes, he <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span>.</div>
+
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex5')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex5')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex6">
+    <h2>6. Write the short answer.</h2>
+    <div class="example"><strong>Example:</strong> Are you Lisa? (Yes) → <strong>Yes, I am.</strong></div>
+    <div class="item checkable"><label>1. Are you a student? <strong>(Yes)</strong></label><input type="text" data-answer="yes i am"><span class="feedback"></span></div>
+    <div class="item checkable"><label>2. Are you in room 3? <strong>(No)</strong></label><input type="text" data-answers="no i'm not|no i am not"><span class="feedback"></span></div>
+    <div class="item checkable"><label>3. Is Henry in your class? <strong>(Yes)</strong></label><input type="text" data-answer="yes he is"><span class="feedback"></span></div>
+    <div class="item checkable"><label>4. Is Lisa in room 2? <strong>(No)</strong></label><input type="text" data-answers="no she isn't|no she is not"><span class="feedback"></span></div>
+    <div class="item checkable"><label>5. Is he Henry? <strong>(Yes)</strong></label><input type="text" data-answer="yes he is"><span class="feedback"></span></div>
+    <div class="item checkable"><label>6. Is she a student? <strong>(No)</strong></label><input type="text" data-answers="no she isn't|no she is not"><span class="feedback"></span></div>
+    <div class="item checkable"><label>7. Are you number 1? <strong>(No)</strong></label><input type="text" data-answers="no i'm not|no i am not"><span class="feedback"></span></div>
+    <div class="item checkable"><label>8. Is your teacher in the classroom? <strong>(Yes)</strong></label><input type="text" data-answers="yes he is|yes she is"><span class="feedback"></span></div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex6')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex6')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex7">
+    <h2>7. Complete the questions and short answers.</h2>
+    <p>Use <strong>am, is, are, am not, isn't</strong> or <strong>aren't</strong>.</p>
+    <div class="inline">1. <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you Henry? — Yes, I <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span>.</div>
+    <div class="inline">2. <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> Lisa in room 2? — No, she <span class="checkable"><input type="text" data-answers="isn't|is not"><span class="feedback"></span></span>.</div>
+    <div class="inline">3. <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> he in your class? — Yes, he <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span>.</div>
+    <div class="inline">4. <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you number 3? — No, I <span class="checkable"><input type="text" data-answers="am not|'m not"><span class="feedback"></span></span>.</div>
+    <div class="inline">5. <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> she Lisa? — Yes, she <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span>.</div>
+    <div class="inline">6. <span class="checkable"><input type="text" data-answer="is"><span class="feedback"></span></span> Henry in room 1? — No, he <span class="checkable"><input type="text" data-answers="isn't|is not"><span class="feedback"></span></span>.</div>
+    <div class="inline">7. <span class="checkable"><input type="text" data-answer="am"><span class="feedback"></span></span> I in room 1? — Yes, you <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span>.</div>
+    <div class="inline">8. <span class="checkable"><input type="text" data-answer="are"><span class="feedback"></span></span> you a student? — No, I <span class="checkable"><input type="text" data-answers="am not|'m not"><span class="feedback"></span></span>.</div>
+    <div class="exercise-actions">
+      <button class="primary" onclick="checkExercise('ex7')">Check answers</button>
+      <button class="secondary" onclick="resetExercise('ex7')">Try again</button>
+    </div>
+  </section>
+
+  <section class="exercise" id="ex8">
+    <h2>8. Write about yourself.</h2>
+    <div class="open-note">These answers are personal, so there is no automatic correction.</div>
+    <div class="item"><label>1. I'm ...</label><input type="text"></div>
+    <div class="item"><label>2. I'm not ...</label><input type="text"></div>
+    <div class="item"><label>3. I'm in ...</label><input type="text"></div>
+    <div class="item"><label>4. I'm not in ...</label><input type="text"></div>
+  </section>
+</div>
+
+<script>
+function norm(s){
+  return s.toLowerCase()
+    .replace(/[’‘]/g,"'")
+    .replace(/[?.!,]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function acceptedAnswers(input){
+  if(input.dataset.answers){
+    return input.dataset.answers.split("|").map(norm);
+  }
+  return [norm(input.dataset.answer || "")];
+}
+
+function prettyAnswer(s){
+  let t = s.trim()
+    .replace(/\bi\b/g, "I")
+    .replace(/\bi'm\b/g, "I'm");
+  if(t.length > 1) t = t.charAt(0).toUpperCase() + t.slice(1);
+  return t;
+}
+
+function checkExercise(id){
+  const section = document.getElementById(id);
+  section.querySelectorAll(".checkable").forEach(box=>{
+    const input = box.querySelector("input[data-answer], input[data-answers]");
+    if(!input) return;
+
+    const value = norm(input.value);
+    const answers = acceptedAnswers(input);
+    const feedback = box.querySelector(".feedback");
+    box.classList.remove("correct","incorrect");
+
+    if(answers.includes(value)){
+      box.classList.add("correct");
+      feedback.textContent = "✓ Correct";
+    }else{
+      box.classList.add("incorrect");
+      const raw = input.dataset.answers
+        ? input.dataset.answers.split("|")[0]
+        : (input.dataset.answer || "");
+      feedback.textContent = "Correct answer: " + prettyAnswer(raw);
+    }
+  });
+}
+
+function resetExercise(id){
+  const section = document.getElementById(id);
+  section.querySelectorAll('input[type="text"]').forEach(i=>i.value="");
+  section.querySelectorAll(".checkable").forEach(box=>{
+    box.classList.remove("correct","incorrect");
+    const f = box.querySelector(".feedback");
+    if(f) f.textContent="";
+  });
+}
+</script>
+</body>
+</html>
