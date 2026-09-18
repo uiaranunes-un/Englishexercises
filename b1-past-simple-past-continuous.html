@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B1 — Past Simple & Past Continuous</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --card: #ffffff;
+      --text: #222222;
+      --muted: #666666;
+      --border: #d9d9d4;
+      --accent: #2f5d50;
+      --accent-soft: #eef4f1;
+      --correct: #1f6b45;
+      --incorrect: #9a3b2f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.25;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0;
+      margin-bottom: 26px;
+    }
+
+    .reference-box,
+    .exercise {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .reference-box {
+      background: var(--accent-soft);
+    }
+
+    .reference-box h2 {
+      margin-bottom: 18px;
+    }
+
+    .reference-box h3 {
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    .example {
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      background: #fff;
+      margin: 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f1ee;
+    }
+
+    .scroll {
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff7df;
+      border-left: 4px solid #b68b20;
+      padding: 10px 12px;
+      margin: 14px 0;
+    }
+
+    .question {
+      margin: 18px 0 22px;
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      font: inherit;
+      padding: 10px 11px;
+      border: 1px solid #bfc2bc;
+      border-radius: 7px;
+      background: #fff;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: 2px solid rgba(47,93,80,.18);
+      border-color: var(--accent);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .inline-input {
+      width: 220px !important;
+      display: inline-block;
+      margin: 4px 3px;
+    }
+
+    .story-input {
+      width: 165px !important;
+      display: inline-block;
+      margin: 3px;
+      vertical-align: middle;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 7px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: #edf7f1;
+      color: var(--correct);
+      border: 1px solid #cce5d6;
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: #fbefed;
+      color: var(--incorrect);
+      border: 1px solid #e7c9c4;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border-radius: 7px;
+      padding: 10px 16px;
+      border: 1px solid var(--accent);
+    }
+
+    .check-btn {
+      color: white;
+      background: var(--accent);
+    }
+
+    .reset-btn {
+      color: var(--accent);
+      background: white;
+    }
+
+    .answer-box {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fafaf8;
+    }
+
+    .answer-box.show {
+      display: block;
+    }
+
+    .answer-box h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .answer-box ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .personal-note {
+      background: #f2f3f6;
+      border: 1px solid #dcdfe6;
+      border-radius: 8px;
+      padding: 12px;
+      color: #444;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 650px) {
+      h1 { font-size: 1.6rem; }
+      .reference-box, .exercise { padding: 16px; }
+      .inline-input, .story-input {
+        width: 100% !important;
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>B1 — Past Simple &amp; Past Continuous</h1>
+    <p class="subtitle">Talking about finished past events and actions that were in progress in the past.</p>
+
+    <section class="reference-box">
+      <h2>Reference Box</h2>
+
+      <h3>1. Past Simple</h3>
+      <p>Use the <strong>Past Simple</strong> for actions that <strong>started and finished in the past</strong>.</p>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Verb</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>I / You / He / She / We / They</td>
+              <td>past form</td>
+              <td>I <strong>worked</strong> yesterday.<br>She <strong>went</strong> to the supermarket.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Regular verbs</strong> usually end in <strong>-ed</strong>:</p>
+      <p>work → worked &nbsp; | &nbsp; watch → watched &nbsp; | &nbsp; play → played &nbsp; | &nbsp; study → studied</p>
+
+      <p><strong>Some common verbs are irregular:</strong></p>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Present</th>
+              <th>Past</th>
+              <th>Portuguese</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>go</td><td><strong>went</strong></td><td>ir</td></tr>
+            <tr><td>have</td><td><strong>had</strong></td><td>ter</td></tr>
+            <tr><td>get</td><td><strong>got</strong></td><td>pegar / conseguir / chegar</td></tr>
+            <tr><td>see</td><td><strong>saw</strong></td><td>ver</td></tr>
+            <tr><td>eat</td><td><strong>ate</strong></td><td>comer</td></tr>
+            <tr><td>come</td><td><strong>came</strong></td><td>vir</td></tr>
+            <tr><td>make</td><td><strong>made</strong></td><td>fazer</td></tr>
+            <tr><td>take</td><td><strong>took</strong></td><td>pegar / levar</td></tr>
+            <tr><td>buy</td><td><strong>bought</strong></td><td>comprar</td></tr>
+            <tr><td>say</td><td><strong>said</strong></td><td>dizer</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Negative</h3>
+      <p>Use <strong>didn't + base verb</strong>.</p>
+      <div class="example">
+        I <strong>didn't work</strong> yesterday.<br>
+        She <strong>didn't go</strong> to work.
+      </div>
+
+      <div class="note">
+        After <strong>didn't</strong>, use the base form:<br>
+        <strong>didn't go</strong> ✅ &nbsp;&nbsp; <strong>didn't went</strong> ❌
+      </div>
+
+      <h3>Questions</h3>
+      <p>Use <strong>Did + subject + base verb?</strong></p>
+      <div class="example">
+        <strong>Did</strong> you <strong>work</strong> yesterday?<br>
+        <strong>Did</strong> she <strong>go</strong> to the supermarket?
+      </div>
+
+      <div class="note">
+        <strong>Did she go...?</strong> ✅ &nbsp;&nbsp; <strong>Did she went...?</strong> ❌
+      </div>
+
+      <h3>2. Past Continuous</h3>
+      <p>Use the <strong>Past Continuous</strong> for an action that <strong>was in progress at a particular moment in the past</strong>.</p>
+
+      <p><strong>Form: was / were + verb-ing</strong></p>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Form</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>I / He / She / It</td>
+              <td><strong>was + -ing</strong></td>
+              <td>She <strong>was working</strong>.</td>
+            </tr>
+            <tr>
+              <td>You / We / They</td>
+              <td><strong>were + -ing</strong></td>
+              <td>They <strong>were eating</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example">
+        At 8:00 last night, I <strong>was watching</strong> TV.<br>
+        They <strong>were having</strong> dinner.
+      </div>
+
+      <p><strong>Negative:</strong> I <strong>wasn't sleeping</strong>. / They <strong>weren't working</strong>.</p>
+      <p><strong>Questions:</strong> <strong>Were</strong> you <strong>sleeping</strong>? / <strong>Was</strong> he <strong>working</strong>?</p>
+
+      <h3>3. Past Simple + Past Continuous</h3>
+      <p>We often use the two tenses together. The <strong>Past Continuous</strong> describes an action already in progress. The <strong>Past Simple</strong> describes another event that happened during that action.</p>
+
+      <div class="example">
+        I <strong>was cooking</strong> when the phone <strong>rang</strong>.<br>
+        We <strong>were walking</strong> home when it <strong>started</strong> to rain.
+      </div>
+
+      <p>With <strong>while</strong>, we often describe an action in progress:</p>
+      <div class="example">
+        <strong>While</strong> I <strong>was studying</strong>, my brother <strong>was watching</strong> TV.
+      </div>
+    </section>
+
+    <section class="exercise" id="exercise1">
+      <h2>Exercise 1 — Learn the irregular verbs</h2>
+      <p>Complete the table.</p>
+
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Present</th><th>Past</th></tr></thead>
+          <tbody>
+            <tr><td>1. go</td><td><input type="text" data-answer="went"></td></tr>
+            <tr><td>2. have</td><td><input type="text" data-answer="had"></td></tr>
+            <tr><td>3. see</td><td><input type="text" data-answer="saw"></td></tr>
+            <tr><td>4. eat</td><td><input type="text" data-answer="ate"></td></tr>
+            <tr><td>5. come</td><td><input type="text" data-answer="came"></td></tr>
+            <tr><td>6. make</td><td><input type="text" data-answer="made"></td></tr>
+            <tr><td>7. take</td><td><input type="text" data-answer="took"></td></tr>
+            <tr><td>8. buy</td><td><input type="text" data-answer="bought"></td></tr>
+            <tr><td>9. get</td><td><input type="text" data-answer="got"></td></tr>
+            <tr><td>10. say</td><td><input type="text" data-answer="said"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise1')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise1')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise2">
+      <h2>Exercise 2 — Past Simple</h2>
+      <p>Complete the sentences with the <strong>Past Simple</strong> form of the verb in parentheses.</p>
+
+      <div class="question"><label>1. I __________ at home yesterday. (work)</label><input type="text" data-answer="worked"></div>
+      <div class="question"><label>2. Laura __________ to the supermarket after work. (go)</label><input type="text" data-answer="went"></div>
+      <div class="question"><label>3. We __________ dinner at about 8:00. (eat)</label><input type="text" data-answer="ate"></div>
+      <div class="question"><label>4. My brother __________ a new phone last week. (buy)</label><input type="text" data-answer="bought"></div>
+      <div class="question"><label>5. They __________ a movie on Saturday night. (watch)</label><input type="text" data-answer="watched"></div>
+      <div class="question"><label>6. I __________ my friend at the bus stop. (see)</label><input type="text" data-answer="saw"></div>
+      <div class="question"><label>7. David __________ breakfast before work. (have)</label><input type="text" data-answer="had"></div>
+      <div class="question"><label>8. My parents __________ home late. (come)</label><input type="text" data-answer="came"></div>
+      <div class="question"><label>9. She __________ English for two hours yesterday. (study)</label><input type="text" data-answer="studied"></div>
+      <div class="question"><label>10. I __________ a mistake in my homework. (make)</label><input type="text" data-answer="made"></div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise2')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise2')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise3">
+      <h2>Exercise 3 — Negative and questions</h2>
+      <p>Complete the sentences.</p>
+
+      <div class="example">
+        <strong>Example:</strong><br>
+        She went to work.<br>
+        Negative: She <strong>didn't go</strong> to work.<br>
+        Question: <strong>Did she go</strong> to work?
+      </div>
+
+      <div class="question">
+        <p><strong>1. Tom watched TV last night.</strong></p>
+        <label>Negative:</label>
+        <input type="text" data-answer="Tom didn't watch TV last night|Tom did not watch TV last night">
+        <label style="margin-top:8px;">Question:</label>
+        <input type="text" data-answer="Did Tom watch TV last night">
+      </div>
+
+      <div class="question">
+        <p><strong>2. Maria went to the supermarket.</strong></p>
+        <label>Negative:</label>
+        <input type="text" data-answer="Maria didn't go to the supermarket|Maria did not go to the supermarket">
+        <label style="margin-top:8px;">Question:</label>
+        <input type="text" data-answer="Did Maria go to the supermarket">
+      </div>
+
+      <div class="question">
+        <p><strong>3. They had lunch at home.</strong></p>
+        <label>Negative:</label>
+        <input type="text" data-answer="They didn't have lunch at home|They did not have lunch at home">
+        <label style="margin-top:8px;">Question:</label>
+        <input type="text" data-answer="Did they have lunch at home">
+      </div>
+
+      <div class="question">
+        <p><strong>4. Jack bought a new computer.</strong></p>
+        <label>Negative:</label>
+        <input type="text" data-answer="Jack didn't buy a new computer|Jack did not buy a new computer">
+        <label style="margin-top:8px;">Question:</label>
+        <input type="text" data-answer="Did Jack buy a new computer">
+      </div>
+
+      <div class="question">
+        <p><strong>5. Anna saw her friends after work.</strong></p>
+        <label>Negative:</label>
+        <input type="text" data-answer="Anna didn't see her friends after work|Anna did not see her friends after work">
+        <label style="margin-top:8px;">Question:</label>
+        <input type="text" data-answer="Did Anna see her friends after work">
+      </div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise3')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise3')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise4">
+      <h2>Exercise 4 — Past Continuous</h2>
+      <p>Complete with <strong>was / were + the -ing form</strong> of the verb.</p>
+
+      <div class="question"><label>1. At 9:00 last night, I ________________________ TV. (watch)</label><input type="text" data-answer="was watching"></div>
+      <div class="question"><label>2. My parents ________________________ dinner. (eat)</label><input type="text" data-answer="were eating"></div>
+      <div class="question"><label>3. Sarah ________________________ for a test. (study)</label><input type="text" data-answer="was studying"></div>
+      <div class="question"><label>4. We ________________________ home. (walk)</label><input type="text" data-answer="were walking"></div>
+      <div class="question"><label>5. The children ________________________ in the garden. (play)</label><input type="text" data-answer="were playing"></div>
+      <div class="question"><label>6. You ________________________ when I called you. (sleep)</label><input type="text" data-answer="were sleeping"></div>
+      <div class="question"><label>7. Tom ________________________ on his computer. (work)</label><input type="text" data-answer="was working"></div>
+      <div class="question"><label>8. I ________________________ breakfast at 7:30. (have)</label><input type="text" data-answer="was having"></div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise4')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise4')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise5">
+      <h2>Exercise 5 — Past Simple or Past Continuous?</h2>
+      <p>Complete with the correct form of the verb.</p>
+
+      <div class="example">
+        <strong>Example:</strong> I <strong>was walking</strong> home when I <strong>saw</strong> David.
+      </div>
+
+      <div class="question">
+        <label>1. I __________ dinner when my friend __________. (make / call)</label>
+        <input class="inline-input" type="text" data-answer="was making" placeholder="make">
+        <input class="inline-input" type="text" data-answer="called" placeholder="call">
+      </div>
+
+      <div class="question">
+        <label>2. We __________ TV when the electricity __________ off. (watch / go)</label>
+        <input class="inline-input" type="text" data-answer="were watching" placeholder="watch">
+        <input class="inline-input" type="text" data-answer="went" placeholder="go">
+      </div>
+
+      <div class="question">
+        <label>3. Sarah __________ to work when she __________ an accident. (drive / see)</label>
+        <input class="inline-input" type="text" data-answer="was driving" placeholder="drive">
+        <input class="inline-input" type="text" data-answer="saw" placeholder="see">
+      </div>
+
+      <div class="question">
+        <label>4. While Tom __________, his wife __________ dinner. (work / make)</label>
+        <input class="inline-input" type="text" data-answer="was working" placeholder="work">
+        <input class="inline-input" type="text" data-answer="was making" placeholder="make">
+      </div>
+
+      <div class="question">
+        <label>5. I __________ my phone while I __________ to school. (drop / walk)</label>
+        <input class="inline-input" type="text" data-answer="dropped" placeholder="drop">
+        <input class="inline-input" type="text" data-answer="was walking" placeholder="walk">
+      </div>
+
+      <div class="question">
+        <label>6. They __________ lunch when I __________ at their house. (eat / arrive)</label>
+        <input class="inline-input" type="text" data-answer="were eating" placeholder="eat">
+        <input class="inline-input" type="text" data-answer="arrived" placeholder="arrive">
+      </div>
+
+      <div class="question">
+        <label>7. While we __________ in the park, it __________ to rain. (walk / start)</label>
+        <input class="inline-input" type="text" data-answer="were walking" placeholder="walk">
+        <input class="inline-input" type="text" data-answer="started" placeholder="start">
+      </div>
+
+      <div class="question">
+        <label>8. My brother __________ when the phone __________. (sleep / ring)</label>
+        <input class="inline-input" type="text" data-answer="was sleeping" placeholder="sleep">
+        <input class="inline-input" type="text" data-answer="rang" placeholder="ring">
+      </div>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise5')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise5')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise6">
+      <h2>Exercise 6 — What happened?</h2>
+      <p>Complete the story with the <strong>Past Simple</strong> or <strong>Past Continuous</strong>.</p>
+
+      <p>
+        Yesterday evening, I
+        <input class="story-input" type="text" data-answer="was walking" aria-label="walk"> (walk)
+        home from work. It
+        <input class="story-input" type="text" data-answer="was raining" aria-label="rain"> (rain),
+        so I
+        <input class="story-input" type="text" data-answer="had" aria-label="have"> (have)
+        an umbrella.
+      </p>
+
+      <p>
+        While I
+        <input class="story-input" type="text" data-answer="was walking" aria-label="walk"> (walk)
+        along the street, I
+        <input class="story-input" type="text" data-answer="saw" aria-label="see"> (see)
+        my friend Daniel. He
+        <input class="story-input" type="text" data-answer="was standing" aria-label="stand"> (stand)
+        at a bus stop.
+      </p>
+
+      <p>
+        I
+        <input class="story-input" type="text" data-answer="stopped" aria-label="stop"> (stop)
+        and we
+        <input class="story-input" type="text" data-answer="talked" aria-label="talk"> (talk)
+        for a few minutes. While we
+        <input class="story-input" type="text" data-answer="were talking" aria-label="talk"> (talk),
+        his bus
+        <input class="story-input" type="text" data-answer="arrived" aria-label="arrive"> (arrive).
+      </p>
+
+      <p>
+        Daniel
+        <input class="story-input" type="text" data-answer="got" aria-label="get"> (get)
+        on the bus, and I
+        <input class="story-input" type="text" data-answer="continued" aria-label="continue"> (continue)
+        walking home.
+      </p>
+
+      <div class="buttons">
+        <button class="check-btn" onclick="checkExercise('exercise6')">Check answers</button>
+        <button class="reset-btn" onclick="resetExercise('exercise6')">Try again</button>
+      </div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="exercise" id="exercise7">
+      <h2>Exercise 7 — Write about you</h2>
+      <p>Complete the sentences with true information.</p>
+
+      <div class="question">
+        <label>1. Yesterday, I...</label>
+        <textarea></textarea>
+      </div>
+      <div class="question">
+        <label>2. Last weekend, I...</label>
+        <textarea></textarea>
+      </div>
+      <div class="question">
+        <label>3. At 8:00 last night, I was...</label>
+        <textarea></textarea>
+      </div>
+      <div class="question">
+        <label>4. Yesterday morning, I was...</label>
+        <textarea></textarea>
+      </div>
+      <div class="question">
+        <label>5. While I was __________, __________ happened.</label>
+        <textarea></textarea>
+      </div>
+
+      <div class="personal-note">
+        These answers are personal, so there is no automatic correction. Please send your answers to your teacher.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function normalize(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/[?.!]+$/g, "")
+        .replace(/\s+/g, " ");
+    }
+
+    function getAcceptedAnswers(input) {
+      return input.dataset.answer.split("|").map(a => a.trim());
+    }
+
+    function getDisplayAnswer(input) {
+      return getAcceptedAnswers(input)[0];
+    }
+
+    function ensureFeedback(input) {
+      let feedback = input.nextElementSibling;
+      if (!feedback || !feedback.classList.contains("feedback")) {
+        feedback = document.createElement("div");
+        feedback.className = "feedback";
+        input.insertAdjacentElement("afterend", feedback);
+      }
+      return feedback;
+    }
+
+    function checkExercise(id) {
+      const exercise = document.getElementById(id);
+      const inputs = exercise.querySelectorAll('input[data-answer]');
+      const answerBox = exercise.querySelector('.answer-box');
+      const answerList = [];
+
+      inputs.forEach((input, index) => {
+        const userAnswer = normalize(input.value);
+        const accepted = getAcceptedAnswers(input).map(normalize);
+        const displayAnswer = getDisplayAnswer(input);
+        const isCorrect = accepted.includes(userAnswer);
+        const feedback = ensureFeedback(input);
+
+        if (isCorrect) {
+          feedback.className = "feedback correct";
+          feedback.innerHTML = "✓ Correct. <strong>Correct answer:</strong> " + escapeHtml(displayAnswer);
+        } else {
+          feedback.className = "feedback incorrect";
+          feedback.innerHTML = "<strong>Correct answer:</strong> " + escapeHtml(displayAnswer);
+        }
+
+        answerList.push("<li>" + escapeHtml(displayAnswer) + "</li>");
+      });
+
+      answerBox.innerHTML =
+        "<h3>Answer key for this exercise</h3><ol>" +
+        answerList.join("") +
+        "</ol>";
+      answerBox.classList.add("show");
+    }
+
+    function resetExercise(id) {
+      const exercise = document.getElementById(id);
+      exercise.querySelectorAll('input[data-answer]').forEach(input => {
+        input.value = "";
+      });
+
+      exercise.querySelectorAll('.feedback').forEach(feedback => {
+        feedback.remove();
+      });
+
+      const answerBox = exercise.querySelector('.answer-box');
+      if (answerBox) {
+        answerBox.classList.remove("show");
+        answerBox.innerHTML = "";
+      }
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
