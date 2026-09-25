@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A1 — Where Are You From?</title>
+  <style>
+    :root {
+      --bg: #f6f7f8;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6b76;
+      --border: #d9dee3;
+      --soft: #eef2f5;
+      --accent: #2f5d62;
+      --accent-soft: #eaf1f2;
+      --success: #1f7a4d;
+      --error: #b33a3a;
+      --focus: #8ab4c0;
+      --shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .page {
+      width: min(940px, calc(100% - 28px));
+      margin: 28px auto 56px;
+    }
+
+    header {
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .reference,
+    .exercise {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .reference {
+      border-left: 5px solid var(--accent);
+    }
+
+    .reference h2,
+    .exercise h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .reference h3,
+    .exercise h3 {
+      font-size: 1.05rem;
+      margin: 20px 0 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--soft);
+      font-weight: 650;
+    }
+
+    .remember {
+      background: var(--accent-soft);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 14px;
+    }
+
+    .example {
+      background: var(--soft);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+
+    .items {
+      display: grid;
+      gap: 13px;
+      margin-top: 14px;
+    }
+
+    .item {
+      padding-bottom: 12px;
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .prompt {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    input[type="text"] {
+      width: min(100%, 520px);
+      min-height: 42px;
+      border: 1px solid #bfc7ce;
+      border-radius: 8px;
+      padding: 9px 11px;
+      font: inherit;
+      color: inherit;
+      background: white;
+    }
+
+    input[type="text"]:focus {
+      outline: 3px solid rgba(138, 180, 192, .25);
+      border-color: var(--focus);
+    }
+
+    .inline-input {
+      width: 155px !important;
+      min-height: 38px !important;
+      padding: 6px 9px !important;
+      margin: 2px 4px;
+    }
+
+    .long-input {
+      width: min(100%, 680px) !important;
+    }
+
+    .feedback {
+      min-height: 1.4em;
+      margin-top: 6px;
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .correct { color: var(--success); }
+    .incorrect { color: var(--error); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 10px 15px;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .check {
+      background: var(--accent);
+      color: white;
+    }
+
+    .retry {
+      background: var(--soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    button:hover { filter: brightness(.97); }
+
+    .dialogue {
+      background: #fafbfc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+    }
+
+    .dialogue p {
+      margin: 8px 0;
+    }
+
+    .personal-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-style: italic;
+      background: var(--soft);
+      border-radius: 9px;
+      padding: 10px 12px;
+    }
+
+    .speaking-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .speaking-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fafbfc;
+    }
+
+    .speaking-card h3 {
+      margin-top: 0;
+    }
+
+    .person-fields {
+      display: grid;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        width: min(100% - 18px, 940px);
+        margin-top: 16px;
+      }
+
+      .reference,
+      .exercise {
+        padding: 17px;
+        border-radius: 11px;
+      }
+
+      .speaking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .inline-input {
+        width: 125px !important;
+      }
+
+      table {
+        font-size: .94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>WHERE ARE YOU FROM?</h1>
+      <p class="subtitle">Countries, nationalities, <em>he / she / it</em>, questions with <em>be</em>, and short answers.</p>
+    </header>
+
+    <section class="reference">
+      <h2>REFERENCE</h2>
+
+      <h3>Countries and nationalities</h3>
+      <table>
+        <thead>
+          <tr><th>Country</th><th>Nationality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brazil</td><td>Brazilian</td></tr>
+          <tr><td>Canada</td><td>Canadian</td></tr>
+          <tr><td>Chile</td><td>Chilean</td></tr>
+          <tr><td>China</td><td>Chinese</td></tr>
+          <tr><td>England</td><td>English</td></tr>
+          <tr><td>Japan</td><td>Japanese</td></tr>
+          <tr><td>Korea</td><td>Korean</td></tr>
+          <tr><td>Mexico</td><td>Mexican</td></tr>
+          <tr><td>Peru</td><td>Peruvian</td></tr>
+          <tr><td>Portugal</td><td>Portuguese</td></tr>
+          <tr><td>Saudi Arabia</td><td>Saudi</td></tr>
+          <tr><td>Spain</td><td>Spanish</td></tr>
+          <tr><td>the United States</td><td>American</td></tr>
+          <tr><td>Vietnam</td><td>Vietnamese</td></tr>
+        </tbody>
+      </table>
+
+      <div class="remember">
+        <h3>Remember</h3>
+        <p>Use a <strong>country</strong> after <strong>from</strong>:</p>
+        <p><strong>He’s from Brazil.</strong><br>Ele é do Brasil.</p>
+        <p>Use a <strong>nationality</strong> after <strong>be</strong>:</p>
+        <p><strong>He’s Brazilian.</strong><br>Ele é brasileiro.</p>
+      </div>
+
+      <h3>He, she, it</h3>
+      <p><strong>he</strong> → ele<br>
+         <strong>she</strong> → ela<br>
+         <strong>it</strong> → usado para coisas, lugares ou animais</p>
+      <p><strong>He’s from Mexico.</strong><br>
+         <strong>She’s from Japan.</strong><br>
+         <strong>It’s from Portugal.</strong></p>
+
+      <h3>Asking about country</h3>
+      <p><strong>Where is he from?</strong><br>He’s from Brazil.</p>
+      <p><strong>Where is she from?</strong><br>She’s from Canada.</p>
+
+      <h3>Yes / No questions</h3>
+      <p><strong>Is he from Brazil?</strong><br>Yes, he is. / No, he isn’t.</p>
+      <p><strong>Is she from Japan?</strong><br>Yes, she is. / No, she isn’t.</p>
+    </section>
+
+    <section class="exercise" id="ex1">
+      <h2>1. Countries and nationalities</h2>
+      <p><strong>Write the nationality for each country.</strong></p>
+      <div class="items">
+        <div class="item"><label class="prompt">1. Brazil →</label><input type="text" data-answer="Brazilian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Canada →</label><input type="text" data-answer="Canadian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. Chile →</label><input type="text" data-answer="Chilean"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. China →</label><input type="text" data-answer="Chinese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. England →</label><input type="text" data-answer="English"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. Japan →</label><input type="text" data-answer="Japanese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">7. Korea →</label><input type="text" data-answer="Korean"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">8. Mexico →</label><input type="text" data-answer="Mexican"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">9. Peru →</label><input type="text" data-answer="Peruvian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">10. Portugal →</label><input type="text" data-answer="Portuguese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">11. Spain →</label><input type="text" data-answer="Spanish"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">12. the United States →</label><input type="text" data-answer="American"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex1')">Check answers</button><button class="retry" onclick="resetExercise('ex1')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex2">
+      <h2>2. Complete the sentences</h2>
+      <p><strong>Write the correct nationality.</strong></p>
+      <div class="example"><strong>Example:</strong> Lucas is from Brazil. He’s <strong>Brazilian</strong>.</div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. Emma is from Canada. She’s</label><input type="text" data-answer="Canadian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Kenji is from Japan. He’s</label><input type="text" data-answer="Japanese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. María is from Spain. She’s</label><input type="text" data-answer="Spanish"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. Pedro is from Portugal. He’s</label><input type="text" data-answer="Portuguese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. Mei is from China. She’s</label><input type="text" data-answer="Chinese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. Carlos is from Mexico. He’s</label><input type="text" data-answer="Mexican"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">7. Anna is from the United States. She’s</label><input type="text" data-answer="American"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">8. Minho is from Korea. He’s</label><input type="text" data-answer="Korean"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex2')">Check answers</button><button class="retry" onclick="resetExercise('ex2')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex3">
+      <h2>3. He, she, or it?</h2>
+      <p><strong>Complete with <em>he</em>, <em>she</em>, or <em>it</em>.</strong></p>
+      <div class="example"><strong>Example:</strong> Maria is from Peru. <strong>She</strong> is Peruvian.</div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. David is from England. ___ is English.</label><input type="text" data-answer="He"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Sofia is from Chile. ___ is Chilean.</label><input type="text" data-answer="She"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. Tokyo is a city in Japan. ___ is very big.</label><input type="text" data-answer="It"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. Miguel is from Mexico. ___ is Mexican.</label><input type="text" data-answer="He"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. Ana is from Portugal. ___ is Portuguese.</label><input type="text" data-answer="She"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. London is a city in England. ___ is very famous.</label><input type="text" data-answer="It"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">7. Ken is from Japan. ___ is Japanese.</label><input type="text" data-answer="He"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">8. Laura is from Spain. ___ is Spanish.</label><input type="text" data-answer="She"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex3')">Check answers</button><button class="retry" onclick="resetExercise('ex3')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex4">
+      <h2>4. Look at the information and answer</h2>
+      <table>
+        <thead><tr><th>Name</th><th>Country</th><th>Nationality</th></tr></thead>
+        <tbody>
+          <tr><td>Laura</td><td>Spain</td><td>Spanish</td></tr>
+          <tr><td>Daniel</td><td>Brazil</td><td>Brazilian</td></tr>
+          <tr><td>Keiko</td><td>Japan</td><td>Japanese</td></tr>
+          <tr><td>Emma</td><td>Canada</td><td>Canadian</td></tr>
+          <tr><td>Carlos</td><td>Peru</td><td>Peruvian</td></tr>
+        </tbody>
+      </table>
+      <div class="example"><strong>Example:</strong><br><strong>Is Laura from Brazil?</strong><br>No, she isn’t. She’s from Spain.</div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. Is Daniel from Brazil?</label><input class="long-input" type="text" data-answer="Yes, he is.|Yes he is"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Is Keiko from China?</label><input class="long-input" type="text" data-answer="No, she isn't. She's from Japan.|No she isn't she's from Japan|No, she is not. She is from Japan.|No she is not she is from Japan"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. Where is Emma from?</label><input class="long-input" type="text" data-answer="She's from Canada.|She is from Canada"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. Is Carlos from Peru?</label><input class="long-input" type="text" data-answer="Yes, he is.|Yes he is"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. Where is Laura from?</label><input class="long-input" type="text" data-answer="She's from Spain.|She is from Spain"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. Is Daniel Canadian?</label><input class="long-input" type="text" data-answer="No, he isn't. He's Brazilian.|No he isn't he's Brazilian|No, he is not. He is Brazilian.|No he is not he is Brazilian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">7. Is Emma Canadian?</label><input class="long-input" type="text" data-answer="Yes, she is.|Yes she is"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">8. Where is Keiko from?</label><input class="long-input" type="text" data-answer="She's from Japan.|She is from Japan"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex4')">Check answers</button><button class="retry" onclick="resetExercise('ex4')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex5">
+      <h2>5. Correct the information</h2>
+      <p><strong>The information is wrong. Write the correct answer.</strong></p>
+      <div class="example"><strong>Example:</strong><br>Keiko is from Mexico.<br><strong>No, she isn’t. She’s from Japan.</strong></div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. Daniel is from Canada.</label><input class="long-input" type="text" data-answer="No, he isn't. He's from Brazil.|No he isn't he's from Brazil|No, he is not. He is from Brazil.|No he is not he is from Brazil"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Emma is from Spain.</label><input class="long-input" type="text" data-answer="No, she isn't. She's from Canada.|No she isn't she's from Canada|No, she is not. She is from Canada.|No she is not she is from Canada"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. Carlos is from Brazil.</label><input class="long-input" type="text" data-answer="No, he isn't. He's from Peru.|No he isn't he's from Peru|No, he is not. He is from Peru.|No he is not he is from Peru"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. Laura is from Japan.</label><input class="long-input" type="text" data-answer="No, she isn't. She's from Spain.|No she isn't she's from Spain|No, she is not. She is from Spain.|No she is not she is from Spain"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. Keiko is Chinese.</label><input class="long-input" type="text" data-answer="No, she isn't. She's Japanese.|No she isn't she's Japanese|No, she is not. She is Japanese.|No she is not she is Japanese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. Daniel is American.</label><input class="long-input" type="text" data-answer="No, he isn't. He's Brazilian.|No he isn't he's Brazilian|No, he is not. He is Brazilian.|No he is not he is Brazilian"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex5')">Check answers</button><button class="retry" onclick="resetExercise('ex5')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex6">
+      <h2>6. Complete the dialogues</h2>
+
+      <div class="dialogue">
+        <h3>Dialogue 1</h3>
+        <p>A: Where <input class="inline-input" type="text" data-answer="is"> she from?</p>
+        <p>B: <input class="inline-input" type="text" data-answer="She's|She is"> from Canada.</p>
+        <p>A: <input class="inline-input" type="text" data-answer="Is"> she Canadian?</p>
+        <p>B: Yes, she <input class="inline-input" type="text" data-answer="is">.</p>
+        <div class="feedback group-feedback"></div>
+      </div>
+
+      <div class="dialogue">
+        <h3>Dialogue 2</h3>
+        <p>A: Where <input class="inline-input" type="text" data-answer="is"> he from?</p>
+        <p>B: He’s <input class="inline-input" type="text" data-answer="from"> Portugal.</p>
+        <p>A: <input class="inline-input" type="text" data-answer="Is"> he Spanish?</p>
+        <p>B: No, he <input class="inline-input" type="text" data-answer="isn't|is not">. He’s Portuguese.</p>
+        <div class="feedback group-feedback"></div>
+      </div>
+
+      <div class="dialogue">
+        <h3>Dialogue 3</h3>
+        <p>A: <input class="inline-input" type="text" data-answer="Is"> she from China?</p>
+        <p>B: No, she isn’t.</p>
+        <p>A: Where <input class="inline-input" type="text" data-answer="is"> she from?</p>
+        <p>B: <input class="inline-input" type="text" data-answer="She's|She is"> from Japan.</p>
+        <div class="feedback group-feedback"></div>
+      </div>
+
+      <div class="dialogue">
+        <h3>Dialogue 4</h3>
+        <p>A: Where <input class="inline-input" type="text" data-answer="is"> he from?</p>
+        <p>B: <input class="inline-input" type="text" data-answer="He's|He is"> from Mexico.</p>
+        <p>A: <input class="inline-input" type="text" data-answer="Is"> he Mexican?</p>
+        <p>B: Yes, he <input class="inline-input" type="text" data-answer="is">.</p>
+        <div class="feedback group-feedback"></div>
+      </div>
+
+      <div class="actions"><button class="check" onclick="checkExercise('ex6')">Check answers</button><button class="retry" onclick="resetExercise('ex6')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex7">
+      <h2>7. Country or nationality?</h2>
+      <p><strong>Complete each pair with the missing country or nationality.</strong></p>
+      <div class="example"><strong>Example:</strong> She’s from <strong>Brazil</strong>. She’s <strong>Brazilian</strong>.</div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. He’s from ________. He’s Japanese.</label><input type="text" data-answer="Japan"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. She’s from Spain. She’s ________.</label><input type="text" data-answer="Spanish"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. He’s from ________. He’s Mexican.</label><input type="text" data-answer="Mexico"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. She’s from Canada. She’s ________.</label><input type="text" data-answer="Canadian"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. He’s from Portugal. He’s ________.</label><input type="text" data-answer="Portuguese"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">6. She’s from ________. She’s Chinese.</label><input type="text" data-answer="China"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">7. He’s from the United States. He’s ________.</label><input type="text" data-answer="American"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">8. She’s from ________. She’s Peruvian.</label><input type="text" data-answer="Peru"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">9. He’s from England. He’s ________.</label><input type="text" data-answer="English"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">10. She’s from ________. She’s Chilean.</label><input type="text" data-answer="Chile"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex7')">Check answers</button><button class="retry" onclick="resetExercise('ex7')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex8">
+      <h2>8. Write the question</h2>
+      <p><strong>Read the answer and write the correct question.</strong></p>
+      <div class="example"><strong>Example:</strong><br><strong>Where is she from?</strong><br>She’s from Canada.</div>
+      <div class="items">
+        <div class="item"><label class="prompt">1. He’s from Japan.</label><input class="long-input" type="text" data-answer="Where is he from?"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">2. Yes, she is. She’s Brazilian.</label><input class="long-input" type="text" data-answer="Is she Brazilian?"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">3. Japan? — No, he isn’t. He’s from Mexico.</label><input class="long-input" type="text" data-answer="Is he from Japan?"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">4. She’s from Portugal.</label><input class="long-input" type="text" data-answer="Where is she from?"><div class="feedback"></div></div>
+        <div class="item"><label class="prompt">5. American? — Yes, he is.</label><input class="long-input" type="text" data-answer="Is he American?"><div class="feedback"></div></div>
+      </div>
+      <div class="actions"><button class="check" onclick="checkExercise('ex8')">Check answers</button><button class="retry" onclick="resetExercise('ex8')">Try again</button></div>
+    </section>
+
+    <section class="exercise" id="ex9">
+      <h2>9. About you</h2>
+      <p><strong>Complete with your information.</strong></p>
+      <div class="items">
+        <div class="item"><label class="prompt">My name is</label><input class="long-input" type="text"></div>
+        <div class="item"><label class="prompt">I’m from</label><input class="long-input" type="text"></div>
+        <div class="item"><label class="prompt">I’m <span style="font-weight:400;">(nationality)</span></label><input class="long-input" type="text"></div>
+        <div class="item"><label class="prompt">I’m from ________ in ________. <span style="font-weight:400;">(city / country)</span></label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <input type="text" aria-label="city">
+            <input type="text" aria-label="country">
+          </div>
+        </div>
+      </div>
+      <div class="personal-note">These answers are personal, so there is no automatic correction. Please send your answer to your teacher.</div>
+    </section>
+
+    <section class="exercise" id="ex10">
+      <h2>10. Speaking practice</h2>
+      <p><strong>Olhe as informações. Faça e responda às perguntas em voz alta.</strong></p>
+
+      <div class="speaking-grid">
+        <div class="speaking-card">
+          <h3>1. Julia — Brazil — Brazilian</h3>
+          <p><strong>Where is Julia from?</strong></p>
+          <p><strong>Is she Brazilian?</strong></p>
+        </div>
+        <div class="speaking-card">
+          <h3>2. Tom — the United States — American</h3>
+          <p><strong>Where is Tom from?</strong></p>
+          <p><strong>Is he American?</strong></p>
+        </div>
+        <div class="speaking-card">
+          <h3>3. Akira — Japan — Japanese</h3>
+          <p><strong>Is Akira from China?</strong></p>
+          <p><strong>Where is he from?</strong></p>
+        </div>
+        <div class="speaking-card">
+          <h3>4. Marta — Portugal — Portuguese</h3>
+          <p><strong>Is Marta Spanish?</strong></p>
+          <p><strong>Where is she from?</strong></p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:22px;">Now think of three people you know.</h3>
+
+      <div class="speaking-grid">
+        <div class="speaking-card">
+          <h3>Person 1</h3>
+          <div class="person-fields">
+            <label>Name: <input type="text"></label>
+            <label>Country: <input type="text"></label>
+            <label>Nationality: <input type="text"></label>
+          </div>
+        </div>
+        <div class="speaking-card">
+          <h3>Person 2</h3>
+          <div class="person-fields">
+            <label>Name: <input type="text"></label>
+            <label>Country: <input type="text"></label>
+            <label>Nationality: <input type="text"></label>
+          </div>
+        </div>
+        <div class="speaking-card">
+          <h3>Person 3</h3>
+          <div class="person-fields">
+            <label>Name: <input type="text"></label>
+            <label>Country: <input type="text"></label>
+            <label>Nationality: <input type="text"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="personal-note">This is speaking and personal practice, so there is no automatic correction.</div>
+    </section>
+
+    <footer>A1 English practice — ready for GitHub Pages</footer>
+  </main>
+
+  <script>
+    function normalize(text) {
+      return (text || "")
+        .toLowerCase()
+        .replace(/[’‘`]/g, "'")
+        .replace(/[?.!,;:]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function acceptedAnswers(input) {
+      return (input.dataset.answer || "")
+        .split("|")
+        .map(a => a.trim())
+        .filter(Boolean);
+    }
+
+    function displayAnswer(input) {
+      const answers = acceptedAnswers(input);
+      return answers.length ? answers[0] : "";
+    }
+
+    function checkOne(input) {
+      const feedback = input.parentElement.querySelector(".feedback");
+      if (!feedback) return;
+
+      const answers = acceptedAnswers(input);
+      const user = normalize(input.value);
+      const isCorrect = answers.some(ans => normalize(ans) === user);
+
+      if (isCorrect) {
+        feedback.textContent = "✓ Correct";
+        feedback.className = "feedback correct";
+      } else {
+        feedback.textContent = "Correct answer: " + displayAnswer(input);
+        feedback.className = "feedback incorrect";
+      }
+    }
+
+    function checkDialogue(dialogue) {
+      const inputs = dialogue.querySelectorAll('input[data-answer]');
+      const feedback = dialogue.querySelector(".group-feedback");
+      let allCorrect = true;
+      const corrections = [];
+
+      inputs.forEach(input => {
+        const user = normalize(input.value);
+        const answers = acceptedAnswers(input);
+        const ok = answers.some(ans => normalize(ans) === user);
+        if (!ok) {
+          allCorrect = false;
+          corrections.push(displayAnswer(input));
+        }
+      });
+
+      if (allCorrect) {
+        feedback.textContent = "✓ Correct";
+        feedback.className = "feedback group-feedback correct";
+      } else {
+        feedback.textContent = "Correct answer(s): " + corrections.join(" / ");
+        feedback.className = "feedback group-feedback incorrect";
+      }
+    }
+
+    function checkExercise(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const dialogues = section.querySelectorAll(".dialogue");
+      if (dialogues.length) {
+        dialogues.forEach(checkDialogue);
+        return;
+      }
+
+      section.querySelectorAll('input[data-answer]').forEach(checkOne);
+    }
+
+    function resetExercise(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      section.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = "";
+      });
+
+      section.querySelectorAll(".feedback").forEach(feedback => {
+        feedback.textContent = "";
+        feedback.className = feedback.classList.contains("group-feedback")
+          ? "feedback group-feedback"
+          : "feedback";
+      });
+    }
+  </script>
+</body>
+</html>
