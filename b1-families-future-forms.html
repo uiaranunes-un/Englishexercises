@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B1 — Families and the Future</title>
+  <style>
+    :root{
+      --bg:#f6f7f9;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#667085;
+      --line:#d9dee7;
+      --accent:#2f5d62;
+      --accent-soft:#eef5f5;
+      --success:#176b3a;
+      --success-bg:#edf8f1;
+      --error:#a12622;
+      --error-bg:#fff1f0;
+      --warning:#8a5a00;
+      --warning-bg:#fff7e6;
+      --shadow:0 8px 24px rgba(15,23,42,.06);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 56px;
+    }
+
+    header{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+    }
+
+    h1{
+      margin:0 0 8px;
+      font-size:2rem;
+      line-height:1.2;
+    }
+
+    h2{
+      margin:0 0 18px;
+      font-size:1.45rem;
+      line-height:1.3;
+    }
+
+    h3{
+      margin:20px 0 10px;
+      font-size:1.05rem;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      margin:0;
+    }
+
+    .section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      margin:22px 0;
+    }
+
+    .reference{
+      background:var(--accent-soft);
+      border-left:5px solid var(--accent);
+    }
+
+    .vocab-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px 18px;
+      margin-top:14px;
+    }
+
+    .vocab-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:10px 12px;
+    }
+
+    .word-bank{
+      border:1px dashed var(--accent);
+      background:var(--accent-soft);
+      border-radius:10px;
+      padding:12px 14px;
+      margin:14px 0 18px;
+      font-weight:600;
+    }
+
+    .question{
+      padding:14px 0;
+      border-bottom:1px solid #eef0f3;
+    }
+
+    .question:last-child{border-bottom:none}
+
+    .context{
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+
+    input[type="text"], select, textarea{
+      width:100%;
+      border:1px solid #bfc7d3;
+      border-radius:8px;
+      padding:10px 11px;
+      font:inherit;
+      background:#fff;
+      color:var(--text);
+    }
+
+    input[type="text"]{
+      max-width:430px;
+      display:inline-block;
+      margin:4px 0;
+    }
+
+    textarea{
+      min-height:220px;
+      resize:vertical;
+    }
+
+    select.inline-select{
+      width:auto;
+      min-width:220px;
+      margin:0 4px;
+    }
+
+    .options{
+      margin-top:8px;
+    }
+
+    .option{
+      display:block;
+      padding:6px 0;
+    }
+
+    .option input{
+      margin-right:8px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:14px;
+      background:#fff;
+    }
+
+    th, td{
+      border:1px solid var(--line);
+      padding:10px;
+      vertical-align:top;
+      text-align:left;
+    }
+
+    th{
+      background:#f3f6f8;
+    }
+
+    .compare{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:14px;
+      margin-top:14px;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid #eef0f3;
+    }
+
+    button{
+      border:none;
+      border-radius:9px;
+      padding:10px 16px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .check{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .retry{
+      background:#e9edf2;
+      color:#26313f;
+    }
+
+    button:hover{filter:brightness(.97)}
+
+    .feedback{
+      margin-top:14px;
+      border-radius:10px;
+      padding:12px 14px;
+      display:none;
+    }
+
+    .feedback.show{display:block}
+    .feedback.good{
+      background:var(--success-bg);
+      color:var(--success);
+      border:1px solid #bfe0cb;
+    }
+    .feedback.mixed{
+      background:var(--warning-bg);
+      color:var(--warning);
+      border:1px solid #edd8a5;
+    }
+
+    .item-feedback{
+      margin-top:6px;
+      font-size:.95rem;
+      font-weight:600;
+    }
+
+    .correct-msg{color:var(--success)}
+    .wrong-msg{color:var(--error)}
+
+    .field-correct{
+      border-color:var(--success)!important;
+      background:var(--success-bg)!important;
+    }
+
+    .field-wrong{
+      border-color:var(--error)!important;
+      background:var(--error-bg)!important;
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .writing-note{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:12px 14px;
+      margin-top:14px;
+    }
+
+    ul.compact{
+      margin-top:8px;
+      padding-left:22px;
+    }
+
+    @media (max-width:700px){
+      .page{padding:18px 12px 40px}
+      header,.section{padding:18px}
+      .vocab-grid{grid-template-columns:1fr}
+      table{font-size:.94rem}
+      .table-wrap{overflow-x:auto}
+      h1{font-size:1.65rem}
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>B1 — Families and the Future</h1>
+    <p class="subtitle">Family vocabulary and future forms: <strong>will</strong>, <strong>be going to</strong>, <strong>present continuous</strong> and <strong>shall</strong>.</p>
+  </header>
+
+  <section class="section reference">
+    <h2>Family Vocabulary — Quick Reference</h2>
+    <div class="vocab-grid">
+      <div class="vocab-item"><strong>only child</strong> — a person with no brothers or sisters</div>
+      <div class="vocab-item"><strong>single-parent family</strong> — a family in which one parent raises the child or children</div>
+      <div class="vocab-item"><strong>stepmother / stepfather</strong> — a parent's new wife / husband</div>
+      <div class="vocab-item"><strong>half-brother / half-sister</strong> — a sibling who shares one parent with you</div>
+      <div class="vocab-item"><strong>in-laws</strong> — your husband’s or wife’s family</div>
+      <div class="vocab-item"><strong>extended family</strong> — grandparents, aunts, uncles, cousins, etc.</div>
+      <div class="vocab-item"><strong>generation</strong> — people in a family who are at a similar stage of descent</div>
+      <div class="vocab-item"><strong>relatives</strong> — people who belong to your family</div>
+      <div class="vocab-item"><strong>great-grandparents</strong> — your grandparents’ parents</div>
+      <div class="vocab-item"><strong>couple</strong> — two people who are married or in a romantic relationship</div>
+    </div>
+  </section>
+
+  <section class="section exercise" id="ex1">
+    <h2>1. Vocabulary — A family story</h2>
+    <p>Complete the text with words or expressions from the box. There are <strong>two extra expressions</strong>.</p>
+
+    <div class="word-bank">
+      extended family · generation · half-brother · in-laws · only child · relatives · single-parent family · stepmother · great-grandparents · couple
+    </div>
+
+    <p>Sophie grew up as an
+      <select class="inline-select answer" data-answer="only child">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>,
+      so she had no brothers or sisters when she was a child. Her parents separated when she was eight, and for several years she lived with her mother in a
+      <select class="inline-select answer" data-answer="single-parent family">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>.
+    </p>
+
+    <p>A few years later, her father remarried. Sophie gets on very well with her
+      <select class="inline-select answer" data-answer="stepmother">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>.
+      Her father and his new wife now have a son, so Sophie also has a young
+      <select class="inline-select answer" data-answer="half-brother">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>.
+    </p>
+
+    <p>Sophie is married now, and her husband’s parents live nearby. She sees her
+      <select class="inline-select answer" data-answer="in-laws">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>
+      quite often, especially at weekends.
+    </p>
+
+    <p>At Christmas, the family becomes much bigger. Grandparents, aunts, uncles and cousins all get together, and Sophie enjoys spending time with her whole
+      <select class="inline-select answer" data-answer="extended family">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>.
+    </p>
+
+    <p>She says that every
+      <select class="inline-select answer" data-answer="generation">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>
+      in her family seems to have a different idea of what family life should be like. Some of her older
+      <select class="inline-select answer" data-answer="relatives">
+        <option value="">Choose...</option>
+        <option>extended family</option>
+        <option>generation</option>
+        <option>half-brother</option>
+        <option>in-laws</option>
+        <option>only child</option>
+        <option>relatives</option>
+        <option>single-parent family</option>
+        <option>stepmother</option>
+        <option>great-grandparents</option>
+        <option>couple</option>
+      </select>,
+      for example, think families today are very different from the families they grew up in.
+    </p>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex1')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex1')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section exercise" id="ex2">
+    <h2>2. Vocabulary — Say it with one expression</h2>
+    <p>Complete each sentence with one expression from the vocabulary section. Do not change the meaning.</p>
+
+    <div class="question">
+      <strong>Example:</strong> Mia has no brothers or sisters.<br>
+      → Mia is an <strong>only child</strong>.
+    </div>
+
+    <div class="question">
+      1. My wife’s parents live about twenty minutes from us.<br>
+      → My <input type="text" class="answer" data-answer="in-laws|in laws"> live about twenty minutes from us.
+    </div>
+
+    <div class="question">
+      2. Leo and I have the same mother, but we have different fathers.<br>
+      → Leo is my <input type="text" class="answer" data-answer="half-brother|half brother">.
+    </div>
+
+    <div class="question">
+      3. My mother married Daniel after she divorced my father.<br>
+      → Daniel is my <input type="text" class="answer" data-answer="stepfather">.
+    </div>
+
+    <div class="question">
+      4. My grandparents’ parents were born at the beginning of the twentieth century.<br>
+      → My <input type="text" class="answer" data-answer="great-grandparents|great grandparents"> were born at the beginning of the twentieth century.
+    </div>
+
+    <div class="question">
+      5. After her husband died, Ana brought up her two children by herself.<br>
+      → Ana and her children were a <input type="text" class="answer" data-answer="single-parent family|single parent family">.
+    </div>
+
+    <div class="question">
+      6. At Christmas, we usually get together with our grandparents, aunts, uncles and cousins.<br>
+      → At Christmas, we usually get together with our <input type="text" class="answer" data-answer="extended family">.
+    </div>
+
+    <div class="question">
+      7. My sister, my cousins and I are all around the same age.<br>
+      → We belong to the same <input type="text" class="answer" data-answer="generation">.
+    </div>
+
+    <div class="question">
+      8. There are more than forty people in my family, but I only see some of my <input type="text" class="answer" data-answer="relatives"> regularly.
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex2')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex2')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section reference">
+    <h2>3. Grammar Reference — Talking about the future</h2>
+    <p>English has several ways of talking about the future. The choice depends on <strong>how the speaker sees the future event</strong>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Form</th>
+            <th>We usually use it for...</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>will + base verb</strong></td>
+            <td>predictions based on opinions or expectations</td>
+            <td><em>I think families will become smaller.</em></td>
+          </tr>
+          <tr>
+            <td><strong>will + base verb</strong></td>
+            <td>decisions made at the moment of speaking</td>
+            <td><em>I’ll call Grandma now.</em></td>
+          </tr>
+          <tr>
+            <td><strong>will + base verb</strong></td>
+            <td>promises and offers</td>
+            <td><em>I’ll help you with the children.</em></td>
+          </tr>
+          <tr>
+            <td><strong>be going to + base verb</strong></td>
+            <td>intentions or decisions already made</td>
+            <td><em>We’re going to move closer to my parents.</em></td>
+          </tr>
+          <tr>
+            <td><strong>be going to + base verb</strong></td>
+            <td>predictions based on present evidence</td>
+            <td><em>Look at those boxes! They’re going to fall.</em></td>
+          </tr>
+          <tr>
+            <td><strong>present continuous</strong></td>
+            <td>future arrangements that are already organized</td>
+            <td><em>We’re having dinner with my cousins on Friday.</em></td>
+          </tr>
+          <tr>
+            <td><strong>Shall I...? / Shall we...?</strong></td>
+            <td>offers and suggestions with <strong>I</strong> or <strong>we</strong></td>
+            <td><em>Shall we invite your parents too?</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compare">
+      <strong>Compare:</strong><br><br>
+      <strong>We’re going to visit my grandparents this weekend.</strong><br>
+      → We have decided to do it. The important idea is the <strong>intention</strong>.<br><br>
+
+      <strong>We’re visiting my grandparents at 11 on Saturday.</strong><br>
+      → The visit is already <strong>arranged</strong>.<br><br>
+
+      <strong>I think we’ll visit them more often in the future.</strong><br>
+      → This is a <strong>prediction or expectation</strong>.
+    </div>
+
+    <p><strong>Remember:</strong> Sometimes more than one future form is grammatically possible, but the meaning or emphasis changes.</p>
+    <p><strong>Ask yourself:</strong> Is this an opinion, an intention, an arrangement, a decision made now, or a prediction based on evidence?</p>
+  </section>
+
+  <section class="section exercise" id="ex4">
+    <h2>4. Grammar — What does the speaker mean?</h2>
+    <p>Read each sentence and choose the best description.</p>
+
+    <div class="question" data-correct="b">
+      <strong>1.</strong> I think more young adults will live with their parents in the future.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q1" value="a"> a. an arrangement</label>
+        <label class="option"><input type="radio" name="ex4q1" value="b"> b. an opinion about the future</label>
+        <label class="option"><input type="radio" name="ex4q1" value="c"> c. a decision already made</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>2.</strong> We’re having lunch with my in-laws on Sunday.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q2" value="a"> a. an organized arrangement</label>
+        <label class="option"><input type="radio" name="ex4q2" value="b"> b. a prediction</label>
+        <label class="option"><input type="radio" name="ex4q2" value="c"> c. a spontaneous decision</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>3.</strong> I’m going to spend more time with my grandparents this year.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q3" value="a"> a. an offer</label>
+        <label class="option"><input type="radio" name="ex4q3" value="b"> b. an intention decided before speaking</label>
+        <label class="option"><input type="radio" name="ex4q3" value="c"> c. a prediction based on evidence</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="c">
+      <strong>4.</strong> Look at the baby. She’s going to fall asleep in a minute.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q4" value="a"> a. an arrangement</label>
+        <label class="option"><input type="radio" name="ex4q4" value="b"> b. an opinion about the distant future</label>
+        <label class="option"><input type="radio" name="ex4q4" value="c"> c. a prediction based on present evidence</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>5.</strong> “I can’t pick Grandma up from the station.” — “I’ll do it.”
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q5" value="a"> a. a decision made at the moment of speaking</label>
+        <label class="option"><input type="radio" name="ex4q5" value="b"> b. an arrangement</label>
+        <label class="option"><input type="radio" name="ex4q5" value="c"> c. a previous intention</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>6.</strong> Shall we invite your cousins too?
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q6" value="a"> a. a prediction</label>
+        <label class="option"><input type="radio" name="ex4q6" value="b"> b. a suggestion</label>
+        <label class="option"><input type="radio" name="ex4q6" value="c"> c. a promise</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>7.</strong> Don’t worry. I’ll call you as soon as I arrive.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q7" value="a"> a. a promise</label>
+        <label class="option"><input type="radio" name="ex4q7" value="b"> b. an arrangement</label>
+        <label class="option"><input type="radio" name="ex4q7" value="c"> c. present evidence</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>8.</strong> My sister is getting married next Saturday.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex4q8" value="a"> a. a general prediction</label>
+        <label class="option"><input type="radio" name="ex4q8" value="b"> b. an organized future event</label>
+        <label class="option"><input type="radio" name="ex4q8" value="c"> c. a spontaneous decision</label>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex4')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex4')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section exercise" id="ex5">
+    <h2>5. Grammar — Choose the future that fits the situation</h2>
+    <p>Choose the best option.</p>
+
+    <div class="question" data-correct="b">
+      <strong>1.</strong> We’ve already reserved a table. We...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q1" value="a"> a. will have dinner with my parents at 8 tonight.</label>
+        <label class="option"><input type="radio" name="ex5q1" value="b"> b. are having dinner with my parents at 8 tonight.</label>
+        <label class="option"><input type="radio" name="ex5q1" value="c"> c. are going to have dinner with my parents at 8 tonight.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>2.</strong> I don’t know exactly what will happen, but I think families...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q2" value="a"> a. will change a lot in the next fifty years.</label>
+        <label class="option"><input type="radio" name="ex5q2" value="b"> b. are changing a lot in the next fifty years.</label>
+        <label class="option"><input type="radio" name="ex5q2" value="c"> c. are going to change a lot in the next fifty years.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="c">
+      <strong>3.</strong> My brother has decided that he wants to live closer to our parents. He...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q3" value="a"> a. will move next year, but he hasn’t found a house yet.</label>
+        <label class="option"><input type="radio" name="ex5q3" value="b"> b. is moving next year, but he hasn’t found a house yet.</label>
+        <label class="option"><input type="radio" name="ex5q3" value="c"> c. is going to move next year, but he hasn’t found a house yet.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="c">
+      <strong>4.</strong> Be careful with those boxes! They...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q4" value="a"> a. will fall.</label>
+        <label class="option"><input type="radio" name="ex5q4" value="b"> b. are falling.</label>
+        <label class="option"><input type="radio" name="ex5q4" value="c"> c. are going to fall.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>5.</strong> “The baby is crying.” — “I...”
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q5" value="a"> a. will check on her.</label>
+        <label class="option"><input type="radio" name="ex5q5" value="b"> b. am checking on her.</label>
+        <label class="option"><input type="radio" name="ex5q5" value="c"> c. am going to check on her.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>6.</strong> My sister has an appointment with the estate agent tomorrow at 3. She...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q6" value="a"> a. will see an apartment near our parents’ house.</label>
+        <label class="option"><input type="radio" name="ex5q6" value="b"> b. is seeing an apartment near our parents’ house.</label>
+        <label class="option"><input type="radio" name="ex5q6" value="c"> c. is going to see an apartment near our parents’ house.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>7.</strong> We’ve talked about it for months and finally made a decision. We...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q7" value="a"> a. will have another child in the next few years.</label>
+        <label class="option"><input type="radio" name="ex5q7" value="b"> b. are going to have another child in the next few years.</label>
+        <label class="option"><input type="radio" name="ex5q7" value="c"> c. are having another child in the next few years.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>8.</strong> I’m sure people...
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q8" value="a"> a. will live longer in the future.</label>
+        <label class="option"><input type="radio" name="ex5q8" value="b"> b. are living longer in the future.</label>
+        <label class="option"><input type="radio" name="ex5q8" value="c"> c. are going to live longer in the future.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>9.</strong> Your parents haven’t visited us for ages.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q9" value="a"> a. Will we invite them for lunch this weekend?</label>
+        <label class="option"><input type="radio" name="ex5q9" value="b"> b. Shall we invite them for lunch this weekend?</label>
+        <label class="option"><input type="radio" name="ex5q9" value="c"> c. Are we going to invite them for lunch this weekend?</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>10.</strong> “I forgot to send Aunt Laura a birthday message.” — “Don’t worry. I...”
+      <div class="options">
+        <label class="option"><input type="radio" name="ex5q10" value="a"> a. will remind you next year.</label>
+        <label class="option"><input type="radio" name="ex5q10" value="b"> b. am reminding you next year.</label>
+        <label class="option"><input type="radio" name="ex5q10" value="c"> c. am going to remind you next year.</label>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex5')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex5')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section exercise" id="ex6">
+    <h2>6. Grammar — Same event, different meaning</h2>
+    <p>Look at each pair and choose the best explanation.</p>
+
+    <div class="question" data-correct="a">
+      <strong>1.</strong><br>
+      A. We’re going to spend Christmas with my in-laws.<br>
+      B. We’re spending Christmas with my in-laws.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex6q1" value="a"> a. A focuses on an intention; B presents it as an arrangement.</label>
+        <label class="option"><input type="radio" name="ex6q1" value="b"> b. A is a prediction; B is a promise.</label>
+        <label class="option"><input type="radio" name="ex6q1" value="c"> c. The two forms always have exactly the same meaning.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>2.</strong><br>
+      A. I think my brother will have children one day.<br>
+      B. My brother is going to have a baby.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex6q2" value="a"> a. A is an opinion or prediction; B suggests there is already a plan or present evidence.</label>
+        <label class="option"><input type="radio" name="ex6q2" value="b"> b. A is an arrangement; B is a spontaneous decision.</label>
+        <label class="option"><input type="radio" name="ex6q2" value="c"> c. Both are offers.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>3.</strong><br>
+      Someone says: “Mum needs to know about the change of plans.”<br><br>
+      A. I’ll call her.<br>
+      B. I’m going to call her tonight.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex6q3" value="a"> a. A is a decision made now; B describes an intention that already exists.</label>
+        <label class="option"><input type="radio" name="ex6q3" value="b"> b. A is an arrangement; B is a prediction.</label>
+        <label class="option"><input type="radio" name="ex6q3" value="c"> c. A is evidence-based; B is a promise.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>4.</strong><br>
+      A. Shall we have lunch with Grandma on Sunday?<br>
+      B. We’re having lunch with Grandma on Sunday.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex6q4" value="a"> a. A makes a suggestion; B describes an arrangement.</label>
+        <label class="option"><input type="radio" name="ex6q4" value="b"> b. A is a prediction; B is an offer.</label>
+        <label class="option"><input type="radio" name="ex6q4" value="c"> c. A and B both describe decisions made at the moment of speaking.</label>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex6')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex6')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section exercise" id="ex7">
+    <h2>7. Grammar — Choose the sentence that fits the situation</h2>
+    <p>Choose the sentence that best matches each situation.</p>
+
+    <div class="question" data-correct="b">
+      <strong>1.</strong> You and your sister have already booked a restaurant for dinner with your parents on Friday.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q1" value="a"> a. We’ll have dinner with our parents on Friday.</label>
+        <label class="option"><input type="radio" name="ex7q1" value="b"> b. We’re having dinner with our parents on Friday.</label>
+        <label class="option"><input type="radio" name="ex7q1" value="c"> c. We’re going to have dinner with our parents one day.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="c">
+      <strong>2.</strong> You have decided to move closer to your family next year, but you have not made any arrangements yet.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q2" value="a"> a. We’re moving closer to our family next Tuesday at 10.</label>
+        <label class="option"><input type="radio" name="ex7q2" value="b"> b. We’ll move closer to our family — I’ve just decided.</label>
+        <label class="option"><input type="radio" name="ex7q2" value="c"> c. We’re going to move closer to our family next year.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>3.</strong> Your cousin says she cannot take her children to school tomorrow. You immediately offer to do it.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q3" value="a"> a. I’ll take them to school.</label>
+        <label class="option"><input type="radio" name="ex7q3" value="b"> b. I’m taking them to school.</label>
+        <label class="option"><input type="radio" name="ex7q3" value="c"> c. I’m going to take them to school.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>4.</strong> Your grandfather is standing on an unstable chair and is losing his balance.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q4" value="a"> a. He’ll fall one day.</label>
+        <label class="option"><input type="radio" name="ex7q4" value="b"> b. He’s going to fall.</label>
+        <label class="option"><input type="radio" name="ex7q4" value="c"> c. He’s falling tomorrow.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="c">
+      <strong>5.</strong> Someone asks for your opinion about families thirty years from now.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q5" value="a"> a. Families are becoming very different in thirty years.</label>
+        <label class="option"><input type="radio" name="ex7q5" value="b"> b. Families are going to become different because they have decided to.</label>
+        <label class="option"><input type="radio" name="ex7q5" value="c"> c. I think families will become very different.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="a">
+      <strong>6.</strong> You want to suggest having lunch with your grandparents this weekend.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q6" value="a"> a. Shall we have lunch with our grandparents this weekend?</label>
+        <label class="option"><input type="radio" name="ex7q6" value="b"> b. Will we have lunch with our grandparents this weekend?</label>
+        <label class="option"><input type="radio" name="ex7q6" value="c"> c. We’re going to have lunch with our grandparents this weekend.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>7.</strong> You have arranged to meet your brother at the station tomorrow at 4 p.m.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q7" value="a"> a. I’ll meet my brother at the station tomorrow at 4.</label>
+        <label class="option"><input type="radio" name="ex7q7" value="b"> b. I’m meeting my brother at the station tomorrow at 4.</label>
+        <label class="option"><input type="radio" name="ex7q7" value="c"> c. I’m going to meet my brother sometime tomorrow.</label>
+      </div>
+    </div>
+
+    <div class="question" data-correct="b">
+      <strong>8.</strong> Your sister is worried because nobody can look after her dog during her holiday. You make a promise.
+      <div class="options">
+        <label class="option"><input type="radio" name="ex7q8" value="a"> a. I’m looking after your dog.</label>
+        <label class="option"><input type="radio" name="ex7q8" value="b"> b. I’ll look after your dog.</label>
+        <label class="option"><input type="radio" name="ex7q8" value="c"> c. I’m going to look after your dog next year.</label>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex7')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex7')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section exercise" id="ex8">
+    <h2>8. Grammar in context — One family, several futures</h2>
+    <p>Complete the sentences with the correct form of the verbs in brackets. Use <strong>will</strong>, <strong>be going to</strong>, <strong>present continuous</strong> or <strong>shall</strong>.</p>
+
+    <p>Marta and Paulo live in a small apartment with their two children. They have already decided to find a larger house, but they have not chosen one yet.</p>
+
+    <div class="question">
+      1. They <input type="text" class="answer" data-answer="are going to move"> to a larger house. <em>(move)</em>
+    </div>
+
+    <p>On Thursday at 5 p.m., they have an appointment with an estate agent.</p>
+
+    <div class="question">
+      2. They <input type="text" class="answer" data-answer="are meeting"> an estate agent on Thursday at 5 p.m. <em>(meet)</em>
+    </div>
+
+    <p>Their daughter Clara thinks everyone will be happier outside the city.</p>
+
+    <div class="question">
+      3. Clara thinks the family <input type="text" class="answer" data-answer="will be"> happier outside the city. <em>(be)</em>
+    </div>
+
+    <p>Their son Lucas looks at a very unstable pile of boxes.</p>
+
+    <div class="question">
+      4. “Those boxes <input type="text" class="answer" data-answer="are going to fall">!” <em>(fall)</em>
+    </div>
+
+    <p>Paulo suddenly realizes that nobody has called Grandma.</p>
+
+    <div class="question">
+      5. “I <input type="text" class="answer" data-answer="will call|'ll call"> Grandma now.” <em>(call)</em>
+    </div>
+
+    <p>Marta wants to suggest a family lunch before the move.</p>
+
+    <div class="question">
+      6. “<input type="text" class="answer" data-answer="shall we have"> a family lunch before we move?” <em>(have)</em>
+    </div>
+
+    <div class="controls">
+      <button class="check" onclick="checkExercise('ex8')">Check answers</button>
+      <button class="retry" onclick="resetExercise('ex8')">Try again</button>
+    </div>
+    <div class="feedback" aria-live="polite"></div>
+  </section>
+
+  <section class="section" id="ex9">
+    <h2>9. Written production — My family and the future</h2>
+    <p>Write <strong>120–150 words</strong>. Choose one topic.</p>
+
+    <h3>A. My family in ten years</h3>
+    <p>Imagine your family ten years from now. Write about changes you expect, plans that already exist and arrangements that have already been made.</p>
+
+    <h3>B. Families in the future</h3>
+    <p>How do you think families will change over the next twenty or thirty years?</p>
+
+    <p><strong>Use:</strong></p>
+    <ul class="compact">
+      <li>at least <strong>4 expressions</strong> from the vocabulary section;</li>
+      <li>at least <strong>2 examples with will</strong>;</li>
+      <li>at least <strong>1 example with be going to</strong>;</li>
+      <li>at least <strong>1 present continuous form referring to the future</strong>.</li>
+    </ul>
+
+    <textarea placeholder="Write your text here..."></textarea>
+
+    <div class="writing-note">
+      <strong>This activity has no automatic correction.</strong><br>
+      Please send your text to your teacher for feedback.
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function normalizeText(text) {
+    return String(text || "")
+      .toLowerCase()
+      .trim()
+      .replace(/[’‘]/g, "'")
+      .replace(/[.?!,;:]+$/g, "")
+      .replace(/\s+/g, " ");
+  }
+
+  function acceptedAnswers(raw) {
+    return raw.split("|").map(normalizeText);
+  }
+
+  function clearItemFeedback(exercise) {
+    exercise.querySelectorAll(".item-feedback").forEach(el => el.remove());
+    exercise.querySelectorAll(".field-correct, .field-wrong").forEach(el => {
+      el.classList.remove("field-correct", "field-wrong");
+    });
+    exercise.querySelectorAll(".question").forEach(q => {
+      q.style.background = "";
+    });
+  }
+
+  function addItemFeedback(target, isCorrect, correctAnswer) {
+    const msg = document.createElement("div");
+    msg.className = "item-feedback " + (isCorrect ? "correct-msg" : "wrong-msg");
+    msg.textContent = isCorrect ? "✓ Correct" : "Correct answer: " + correctAnswer;
+    target.appendChild(msg);
+  }
+
+  function checkExercise(id) {
+    const exercise = document.getElementById(id);
+    const feedback = exercise.querySelector(".feedback");
+    clearItemFeedback(exercise);
+
+    let total = 0;
+    let correct = 0;
+
+    // Text inputs and selects
+    const textAnswers = exercise.querySelectorAll(".answer");
+    textAnswers.forEach(field => {
+      total++;
+      const accepted = acceptedAnswers(field.dataset.answer);
+      const value = normalizeText(field.value);
+      const isCorrect = accepted.includes(value);
+
+      field.classList.add(isCorrect ? "field-correct" : "field-wrong");
+
+      const container = field.closest(".question") || field.parentElement;
+      addItemFeedback(container, isCorrect, field.dataset.answer.split("|")[0]);
+
+      if (isCorrect) correct++;
+    });
+
+    // Multiple choice questions
+    const mcQuestions = exercise.querySelectorAll(".question[data-correct]");
+    mcQuestions.forEach(question => {
+      total++;
+      const selected = question.querySelector('input[type="radio"]:checked');
+      const right = question.dataset.correct;
+      const isCorrect = selected && selected.value === right;
+
+      if (isCorrect) {
+        correct++;
+        question.style.background = "var(--success-bg)";
+      } else {
+        question.style.background = "var(--error-bg)";
+      }
+
+      const correctLabel = question.querySelector(`input[value="${right}"]`)?.parentElement?.textContent.trim() || right;
+      addItemFeedback(question, isCorrect, correctLabel);
+    });
+
+    feedback.classList.add("show");
+    feedback.classList.remove("good", "mixed");
+
+    if (correct === total) {
+      feedback.classList.add("good");
+      feedback.innerHTML = `<strong>Excellent!</strong> ${correct}/${total} correct.`;
+    } else {
+      feedback.classList.add("mixed");
+      feedback.innerHTML = `<strong>${correct}/${total} correct.</strong> Review the items above and try again.`;
+    }
+  }
+
+  function resetExercise(id) {
+    const exercise = document.getElementById(id);
+
+    exercise.querySelectorAll('input[type="text"]').forEach(input => input.value = "");
+    exercise.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+    exercise.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+
+    clearItemFeedback(exercise);
+
+    const feedback = exercise.querySelector(".feedback");
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+
+    exercise.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+</script>
+</body>
+</html>
